@@ -30,6 +30,15 @@ public class HomeGUI {
         SistemPanel welcomePanel = new WelcomePanel(this);
         panelMap.put("welcome", welcomePanel);
         mainPanel.add(welcomePanel, "welcome");
+        SistemPanel adminLoginPanel = new AdminLoginPanel(this);
+        panelMap.put("adminLogin", adminLoginPanel);
+        mainPanel.add(adminLoginPanel, "adminLogin");
+        SistemPanel userLoginPanel = new UserLoginPanel(this);
+        panelMap.put("userLogin", userLoginPanel);
+        mainPanel.add(userLoginPanel, "userLogin");
+        SistemPanel registerPanel = new RegisterPanel(this);
+        panelMap.put("register", registerPanel);
+        mainPanel.add(registerPanel, "register");
     }
 
     public Pengakses getUser() {
@@ -37,7 +46,7 @@ public class HomeGUI {
     }
 
     public void setPengakses(Pengakses pengakses) {
-        SistemPenerbangan.setPenggunaLoggedIn(pengakses);
+        SistemPenerbangan.setPengaksesLoggedIn(pengakses);
         this.pengakses = pengakses;
     }
 

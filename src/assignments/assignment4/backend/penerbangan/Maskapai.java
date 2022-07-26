@@ -1,5 +1,7 @@
 package assignments.assignment4.backend.penerbangan;
 
+import java.util.ArrayList;
+
 public class Maskapai {
     private String namaMaskapai;
     private String kodeMaskapai;

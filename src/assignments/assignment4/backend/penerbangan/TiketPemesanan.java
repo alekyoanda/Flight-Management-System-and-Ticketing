@@ -8,13 +8,13 @@ public class TiketPemesanan {
     private Penerbangan penerbangan;
     private Penumpang penumpang;
     private String nomorKursi;
-    private String tanggalPemesanan;
+    private String waktuPemesanan;
 
-    public TiketPemesanan(Penerbangan penerbangan, Penumpang penumpang, String nomorKursi, String tanggalPemesanan){
+    public TiketPemesanan(Penerbangan penerbangan, Penumpang penumpang, String nomorKursi, String waktuPemesanan){
         this.penerbangan = penerbangan;
         this.penumpang = penumpang;
         this.nomorKursi = nomorKursi;
-        this.tanggalPemesanan = tanggalPemesanan;
+        this.waktuPemesanan = waktuPemesanan;
         setIdTiket(generateIdTiket());
     }
 
@@ -33,7 +33,7 @@ public class TiketPemesanan {
                 ", penerbangan=" + penerbangan +
                 ", penumpang=" + penumpang +
                 ", nomorKursi='" + nomorKursi + '\'' +
-                ", tanggalPemesanan='" + tanggalPemesanan + '\'' +
+                ", waktuPemesanan='" + waktuPemesanan + '\'' +
                 '}';
     }
 }

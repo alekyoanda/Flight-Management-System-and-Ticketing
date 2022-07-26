@@ -37,7 +37,7 @@ public class SistemPenerbangan {
     }
 
 
-    public static void setPenggunaLoggedIn(Pengakses pengakses) {
+    public static void setPengaksesLoggedIn(Pengakses pengakses) {
         pengaksesLoggedIn = pengakses;
     }
 }

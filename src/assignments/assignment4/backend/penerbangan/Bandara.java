@@ -24,6 +24,26 @@ public class Bandara {
         daftarMaskapai.add(maskapaiBaru);
     }
 
+    public ArrayList<Penerbangan> getDaftarPenerbanganKeberangkatan(){
+        ArrayList<Penerbangan> daftarPenerbanganKeberangkatan = new ArrayList<>();
+        for (Penerbangan penerbangan: daftarPenerbangan){
+            if (penerbangan.getBandaraAsal() == this){
+                daftarPenerbanganKeberangkatan.add(penerbangan);
+            }
+        }
+        return daftarPenerbanganKeberangkatan;
+    }
+
+    public ArrayList<Penerbangan> getDaftarPenerbanganTujuan(){
+        ArrayList<Penerbangan> daftarPenerbanganTujuan = new ArrayList<>();
+        for (Penerbangan penerbangan: daftarPenerbangan){
+            if (penerbangan.getBandaraTujuan() == this){
+                daftarPenerbanganTujuan.add(penerbangan);
+            }
+        }
+        return daftarPenerbanganTujuan;
+    }
+
     public String getNamaBandara() {
         return namaBandara;
     }
