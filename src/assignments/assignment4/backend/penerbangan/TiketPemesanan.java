@@ -1,5 +1,8 @@
 package assignments.assignment4.backend.penerbangan;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import assignments.assignment4.backend.pengakses.Penumpang;
 
 public class TiketPemesanan {
@@ -10,16 +13,23 @@ public class TiketPemesanan {
     private String nomorKursi;
     private String waktuPemesanan;
 
-    public TiketPemesanan(Penerbangan penerbangan, Penumpang penumpang, String nomorKursi, String waktuPemesanan){
+    public TiketPemesanan(Penerbangan penerbangan, Penumpang penumpang, String nomorKursi){
         this.penerbangan = penerbangan;
         this.penumpang = penumpang;
         this.nomorKursi = nomorKursi;
-        this.waktuPemesanan = waktuPemesanan;
+        setCurrentLocalDateTime();
         setIdTiket(generateIdTiket());
     }
 
     private String generateIdTiket(){
         return "";
+    }
+
+    private void setCurrentLocalDateTime(){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formatDateTime = now.format(format);
+        this.waktuPemesanan = formatDateTime;
     }
 
     private void setIdTiket(String idTiket){

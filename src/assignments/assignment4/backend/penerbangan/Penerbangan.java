@@ -2,7 +2,10 @@ package assignments.assignment4.backend.penerbangan;
 
 import assignments.assignment4.backend.pengakses.Penumpang;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Objects;
 
 public class Penerbangan {
     // TODO
@@ -12,26 +15,26 @@ public class Penerbangan {
     private Maskapai maskapaiPenerbangan;
     private Bandara bandaraAsal;
     private Bandara bandaraTujuan;
-    private int tanggalKeberangkatan;
-    private String waktuKeberangkatan;
-    private String waktuSampai;
+    private Date waktuKeberangkatan;
+    private Date waktuSampai;
     private double hargaTiketPenerbangan;
     private ArrayList<Penumpang> daftarPenumpang;
 
-    public Penerbangan(Maskapai maskapaiPenerbangan, Bandara bandaraAsal, Bandara bandaraTujuan, int tanggalKeberangkatan,
-                       String waktuKeberangkatan, String waktuSampai, double hargaTiketPenerbangan){
+    public Penerbangan(Maskapai maskapaiPenerbangan, Bandara bandaraAsal, Bandara bandaraTujuan,
+                       Date waktuKeberangkatan, Date waktuSampai, double hargaTiketPenerbangan){
         this.maskapaiPenerbangan = maskapaiPenerbangan;
         this.bandaraAsal = bandaraAsal;
         this.bandaraTujuan = bandaraTujuan;
-        this.tanggalKeberangkatan = tanggalKeberangkatan;
         this.waktuKeberangkatan = waktuKeberangkatan;
         this.waktuSampai = waktuSampai;
         this.hargaTiketPenerbangan = hargaTiketPenerbangan;
         setNomorPenerbangan(generateNomorPenerbangan());
+        this.bandaraAsal.addPenerbangan(this);
+        this.bandaraTujuan.addPenerbangan(this);
     }
 
     private String generateNomorPenerbangan(){
-        return "";
+        return maskapaiPenerbangan.getKodeMaskapai() + hashCode();
     }
 
     public void tambahPenumpang(Penumpang penumpangBaru){
@@ -57,11 +60,19 @@ public class Penerbangan {
                 ", maskapaiPenerbangan=" + maskapaiPenerbangan +
                 ", bandaraAsal=" + bandaraAsal +
                 ", bandaraTujuan=" + bandaraTujuan +
-                ", tanggalKeberangkatan=" + tanggalKeberangkatan +
                 ", waktuKeberangkatan='" + waktuKeberangkatan + '\'' +
                 ", waktuSampai='" + waktuSampai + '\'' +
                 ", hargaTiketPenerbangan=" + hargaTiketPenerbangan +
                 ", daftarPenumpang=" + daftarPenumpang +
                 '}';
+    }
+
+    public String getNomorPenerbangan() {
+        return nomorPenerbangan;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bandaraAsal, bandaraTujuan, waktuKeberangkatan, waktuSampai);
     }
 }

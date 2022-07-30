@@ -11,13 +11,14 @@ public class SistemPenerbanganUI {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Sistem Penerbangan");
+
         SistemPenerbangan.registerAdmin();
         SistemPenerbangan.registerBandara();
         SistemPenerbangan.registerMaskapai();
         SistemPenerbangan.registerPenerbangan();
 
         // TODO: Tambahkan hal-hal lain yang diperlukan
-        // Mengistansiasi class HomeGUI dengan parameternya adalah frame
+        // Menginstansiasi class HomeGUI dengan parameternya adalah frame
         HomeGUI home = new HomeGUI(frame);
         frame.setVisible(true);
     }

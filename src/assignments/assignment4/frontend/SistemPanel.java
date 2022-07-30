@@ -55,4 +55,15 @@ public abstract class SistemPanel extends JPanel {
         int bulan = Integer.parseInt(arrOfTanggalLahir[1]);
         return bulan >= 1 && bulan <= 12;
     }
+
+    public static boolean isTextfieldEmpty(JTextField... textFields){
+        boolean isTextfieldEmpty = false;
+        for (JTextField textField: textFields){
+            if (textField.getText().equals("")){
+                isTextfieldEmpty = true;
+                break;
+            }
+        }
+        return isTextfieldEmpty;
+    }
 }

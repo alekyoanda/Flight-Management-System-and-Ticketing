@@ -5,16 +5,19 @@ import assignments.assignment4.backend.penerbangan.TiketPemesanan;
 import java.util.ArrayList;
 
 public class User extends Pengakses{
+    private static int jumlahUser = 0;
+
     protected ArrayList<TiketPemesanan> daftarPemesananTiket;
 
-    public User(String nama) {
-        super(nama);
+    public User(String nama, String username, String password) {
+        super(nama, username, password);
+        jumlahUser++;
         setId(generateID());
     }
 
     @Override
     protected String generateID() {
-        return "";
+        return String.format("USER-%d", jumlahUser);
     }
 
     @Override

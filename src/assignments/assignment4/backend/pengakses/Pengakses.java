@@ -7,8 +7,10 @@ public abstract class Pengakses {
     private String password;
     private String nama;
 
-    protected Pengakses(String nama) {
+    protected Pengakses(String nama, String username, String password) {
         this.nama = nama;
+        this.username = username;
+        this.password = password;
     }
 
     protected abstract String generateID();
@@ -24,6 +26,14 @@ public abstract class Pengakses {
 
     public String getNama() {
         return nama;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     protected void setId(String id) {

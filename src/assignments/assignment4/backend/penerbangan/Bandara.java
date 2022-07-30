@@ -14,14 +14,44 @@ public class Bandara {
         this.namaBandara = namaBandara;
         this.kodeBandara = kodeBandara;
         this.lokasiBandara = lokasiBandara;
+        daftarMaskapai = new ArrayList<>();
+        daftarPenerbangan = new ArrayList<>();
+    }
+    public Penerbangan findPenerbangan(String nomorPenerbangan){
+        for (Penerbangan p: daftarPenerbangan){
+            if (nomorPenerbangan.equals(p.getNomorPenerbangan())){
+                return p;
+            }
+        }
+        return null;
     }
 
-    public void tambahPenerbangan(Penerbangan penerbanganBaru){
-        daftarPenerbangan.add(penerbanganBaru);
+    public Maskapai findMaskapai(String kodeMaskapai){
+        for (Maskapai m: daftarMaskapai){
+            if (kodeMaskapai.equals(m.getKodeMaskapai())){
+                return m;
+            }
+        }
+        return null;
     }
 
-    public void tambahMaskapai(Maskapai maskapaiBaru){
-        daftarMaskapai.add(maskapaiBaru);
+    public boolean addPenerbangan(Penerbangan penerbanganBaru){
+        Penerbangan penerbanganYangInginDitambah = findPenerbangan(penerbanganBaru.getNomorPenerbangan());
+        if (penerbanganYangInginDitambah == null){
+            daftarPenerbangan.add(penerbanganBaru);
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean addMaskapai(Maskapai maskapaiBaru){
+        Maskapai maskapaiYangInginDitambah = findMaskapai(maskapaiBaru.getKodeMaskapai());
+        if (maskapaiYangInginDitambah == null){
+            daftarMaskapai.add(maskapaiBaru);
+            return true;
+        }
+        return false;
     }
 
     public ArrayList<Penerbangan> getDaftarPenerbanganKeberangkatan(){

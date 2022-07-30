@@ -1,15 +1,17 @@
 package assignments.assignment4.backend.pengakses;
 
 public class Admin extends Pengakses{
+    private static int jumlahAdmin = 0;
 
-    public Admin(String nama) {
-        super(nama);
+    public Admin(String nama, String username, String password) {
+        super(nama, username, password);
+        jumlahAdmin++;
         setId(generateID());
     }
 
     @Override
     protected String generateID() {
-        return "";
+        return String.format("ADMIN-%d", jumlahAdmin);
     }
 
     @Override
