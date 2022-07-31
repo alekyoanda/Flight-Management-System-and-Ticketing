@@ -6,16 +6,17 @@ import assignments.assignment4.frontend.SistemPanel;
 import javax.swing.*;
 
 public class UserMainPanel extends SistemPanel {
+    JLabel userHeader;
 
     public UserMainPanel(HomeGUI main) {
         super(main);
         // TODO
-        JLabel userLabel = new JLabel("User");
-        add(userLabel);
+        userHeader = new JLabel();
+        add(userHeader);
     }
 
     @Override
     public void refresh() {
-        // ignored
+        userHeader.setText("User " + main.getUser().getNama());
     }
 }

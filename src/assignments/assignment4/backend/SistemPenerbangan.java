@@ -42,8 +42,30 @@ public class SistemPenerbangan {
         // TODO
     }
 
-    public static Pengakses handleLogin (String username, String password) {
+    public static Pengakses handleLogin(String username, String password) {
         return findPengakses(username, password);
+    }
+
+    public static Pengakses handleRegister(String tipe, String nama, String username, String password){
+        if (findPengakses(username) == null){
+            Pengakses pengaksesBaru;
+            if (tipe.equalsIgnoreCase("admin")){
+                pengaksesBaru = new Admin(nama, username, password);
+            }
+            else{
+                pengaksesBaru = new User(nama, username, password);
+            }
+            daftarPengakses.add(pengaksesBaru);
+            return pengaksesBaru;
+        }
+        return null;
+    }
+
+    public static Pengakses findPengakses(String username) {
+        for (Pengakses pengakses : daftarPengakses) {
+            if (pengakses.getUsername().equals(username)) return pengakses;
+        }
+        return null;
     }
 
     public static Pengakses findPengakses(String username, String password) {

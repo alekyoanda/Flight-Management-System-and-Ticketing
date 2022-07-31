@@ -1,14 +1,19 @@
 package assignments.assignment4.frontend;
 
+import assignments.assignment4.backend.SistemPenerbangan;
+import assignments.assignment4.backend.pengakses.Pengakses;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegisterPanel extends SistemPanel{
+public class RegisterPanel extends SistemPanel {
+
     private JTextField nameTextfield, usernameTextfield;
     private JPasswordField passwordField, confirmPasswordField;
-    public RegisterPanel(HomeGUI main){
+
+    public RegisterPanel(HomeGUI main) {
         super(main);
         // TODO
         setLayout(new GridBagLayout());
@@ -61,20 +66,8 @@ public class RegisterPanel extends SistemPanel{
         gbc.gridy = 9;
         add(buttonPanel, gbc);
 
-        registerAsUserBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO
-            }
-        });
-
-        registerAsAdminBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO
-            }
-        });
-
+        registerAsUserBtn.addActionListener(new RegisterButtonListener("user"));
+        registerAsAdminBtn.addActionListener(new RegisterButtonListener("admin"));
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,5 +80,43 @@ public class RegisterPanel extends SistemPanel{
     @Override
     public void refresh() {
         // ignored
+    }
+
+    private class RegisterButtonListener implements ActionListener {
+        String tipe;
+
+        private RegisterButtonListener(String tipe) {
+            this.tipe = tipe;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String message = "";
+            // Jika user tidak mengisi textfield
+            if (SistemPanel.isTextfieldEmpty(nameTextfield, usernameTextfield, passwordField, confirmPasswordField)) {
+                message = String.format("Textfield tidak boleh kosong!");
+                JOptionPane.showMessageDialog(new JFrame(), message, "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                String name = nameTextfield.getText();
+                String username = usernameTextfield.getText();
+                String password = String.valueOf(passwordField.getPassword());
+                String confirmPassword = String.valueOf(confirmPasswordField.getPassword());
+
+                if (password.equals(confirmPassword)) {
+                    Pengakses pengaksesRegister = SistemPenerbangan.handleRegister(tipe, name, username, password);
+                    if (pengaksesRegister == null) {
+                        message = String.format("Username sudah pernah terdaftar");
+                        JOptionPane.showMessageDialog(new JFrame(), message, "Warning", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        main.setPengakses(pengaksesRegister);
+                        main.setPanel(pengaksesRegister.getTipe());
+                    }
+                } else {
+                    message = String.format("Password dan konfirmasi password tidak sesuai");
+                    JOptionPane.showMessageDialog(new JFrame(), message, "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+
+            }
+        }
     }
 }
