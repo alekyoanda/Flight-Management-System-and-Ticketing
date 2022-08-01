@@ -1,10 +1,6 @@
 package assignments.assignment4.backend.penerbangan;
 
-import assignments.assignment4.backend.pengakses.Penumpang;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 
 public class Penerbangan {
@@ -15,13 +11,14 @@ public class Penerbangan {
     private Maskapai maskapaiPenerbangan;
     private Bandara bandaraAsal;
     private Bandara bandaraTujuan;
-    private Date waktuKeberangkatan;
-    private Date waktuSampai;
+    private String waktuKeberangkatan;
+    private String waktuSampai;
     private double hargaTiketPenerbangan;
-    private ArrayList<Penumpang> daftarPenumpang;
+
+    private ArrayList<RecordPenerbangan> daftarRecordPenerbangan;
 
     public Penerbangan(Maskapai maskapaiPenerbangan, Bandara bandaraAsal, Bandara bandaraTujuan,
-                       Date waktuKeberangkatan, Date waktuSampai, double hargaTiketPenerbangan){
+                       String waktuKeberangkatan, String waktuSampai, double hargaTiketPenerbangan){
         this.maskapaiPenerbangan = maskapaiPenerbangan;
         this.bandaraAsal = bandaraAsal;
         this.bandaraTujuan = bandaraTujuan;
@@ -31,14 +28,12 @@ public class Penerbangan {
         setNomorPenerbangan(generateNomorPenerbangan());
         this.bandaraAsal.addPenerbangan(this);
         this.bandaraTujuan.addPenerbangan(this);
+
+        this.daftarRecordPenerbangan = new ArrayList<>();
     }
 
     private String generateNomorPenerbangan(){
         return maskapaiPenerbangan.getKodeMaskapai() + hashCode();
-    }
-
-    public void tambahPenumpang(Penumpang penumpangBaru){
-        daftarPenumpang.add(penumpangBaru);
     }
 
     public Bandara getBandaraAsal() {
@@ -63,7 +58,6 @@ public class Penerbangan {
                 ", waktuKeberangkatan='" + waktuKeberangkatan + '\'' +
                 ", waktuSampai='" + waktuSampai + '\'' +
                 ", hargaTiketPenerbangan=" + hargaTiketPenerbangan +
-                ", daftarPenumpang=" + daftarPenumpang +
                 '}';
     }
 

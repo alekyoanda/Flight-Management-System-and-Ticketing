@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class User extends Pengakses{
     private static int jumlahUser = 0;
 
-    protected ArrayList<TiketPemesanan> daftarPemesananTiket;
+    private ArrayList<TiketPemesanan> daftarPemesananTiket;
 
     public User(String nama, String username, String password) {
         super(nama, username, password);

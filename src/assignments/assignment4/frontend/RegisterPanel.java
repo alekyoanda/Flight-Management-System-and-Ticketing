@@ -83,7 +83,7 @@ public class RegisterPanel extends SistemPanel {
     }
 
     private class RegisterButtonListener implements ActionListener {
-        String tipe;
+        private String tipe;
 
         private RegisterButtonListener(String tipe) {
             this.tipe = tipe;

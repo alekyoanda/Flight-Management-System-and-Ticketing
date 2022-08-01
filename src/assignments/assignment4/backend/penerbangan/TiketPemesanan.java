@@ -3,17 +3,15 @@ package assignments.assignment4.backend.penerbangan;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import assignments.assignment4.backend.pengakses.Penumpang;
-
 public class TiketPemesanan {
     // TODO
     private String idTiket;
-    private Penerbangan penerbangan;
+    private RecordPenerbangan penerbangan;
     private Penumpang penumpang;
     private String nomorKursi;
     private String waktuPemesanan;
 
-    public TiketPemesanan(Penerbangan penerbangan, Penumpang penumpang, String nomorKursi){
+    public TiketPemesanan(RecordPenerbangan penerbangan, Penumpang penumpang, String nomorKursi){
         this.penerbangan = penerbangan;
         this.penumpang = penumpang;
         this.nomorKursi = nomorKursi;
